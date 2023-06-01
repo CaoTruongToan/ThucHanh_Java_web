@@ -2,7 +2,9 @@ package com.example.caotruongtoan_2011063795.Validator.annotation;
 
 import com.example.caotruongtoan_2011063795.Validator.ValidCategoryIdValidator;
 import jakarta.validation.Constraint;
+import jakarta.validation.ConstraintValidator;
 import jakarta.validation.Payload;
+import lombok.RequiredArgsConstructor;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -20,4 +22,5 @@ public @interface ValidCategoryId {
     String message() default "Invalid Category ID";
     Class <?> [] groups() default {};
     Class <? extends Payload> [] payload() default {};
+
 }

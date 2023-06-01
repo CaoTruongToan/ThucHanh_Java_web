@@ -1,6 +1,7 @@
 package com.example.caotruongtoan_2011063795.controller;
 
 import com.example.caotruongtoan_2011063795.entity.Book;
+import com.example.caotruongtoan_2011063795.entity.Category;
 import com.example.caotruongtoan_2011063795.services.BookService;
 import com.example.caotruongtoan_2011063795.services.CategoryService;
 import jakarta.validation.Valid;
@@ -36,13 +37,6 @@ public class BookController {
         return "book/add";
     }
 
-//    @PostMapping("/add")
-//    public String addBook(@ModelAttribute("book") Book book){
-//
-//        bookService.addBook(book);
-//        return "redirect:/books";
-//    }
-
     @PostMapping("/add")
     public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -53,7 +47,6 @@ public class BookController {
         return "redirect:/books";
     }
 
-
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         Book book = bookService.getBookById(id);
@@ -62,16 +55,14 @@ public class BookController {
         return "Book/edit";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable("id") Long id, Book book, BindingResult result, Model model, @ModelAttribute("book") Book update) {
+    @PostMapping("/update")
+    public String update(@ModelAttribute("book") Book update, BindingResult result) {
         if (result.hasErrors()) {
-            book.setId(id);
             return "Book/edit";
         }
-        bookService.updateBook(id, update);
+        bookService.updateBook(update);
         return "redirect:/books";
     }
-
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id, Model model) {
@@ -79,6 +70,7 @@ public class BookController {
         bookService.deleteBook(id);
         return "redirect:/books";
     }
+
 
 }
 

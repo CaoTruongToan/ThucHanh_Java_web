@@ -24,12 +24,7 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void updateBook(Long id, Book update){
-        Book book = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid book ID: " + id));
-        book.setTitle(update.getTitle());
-        book.setAuthor(update.getAuthor());
-        bookRepository.save(book);
-    }
+    public void updateBook(Book update) {bookRepository.save(update);}
 
     public void deleteBook(Long id) {bookRepository.deleteById(id);}
 
